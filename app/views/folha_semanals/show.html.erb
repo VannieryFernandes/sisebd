@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Usuario turma:</strong>
+  <%= @folha_semanal.usuario_turma %>
+</p>
+
+<p>
+  <strong>Presente:</strong>
+  <%= @folha_semanal.presente %>
+</p>
+
+<p>
+  <strong>Trouxe biblia:</strong>
+  <%= @folha_semanal.trouxe_biblia %>
+</p>
+
+<p>
+  <strong>Trouxe licao:</strong>
+  <%= @folha_semanal.trouxe_licao %>
+</p>
+
+<p>
+  <strong>Capitulos lidos:</strong>
+  <%= @folha_semanal.capitulos_lidos %>
+</p>
+
+<%= link_to 'Edit', edit_folha_semanal_path(@folha_semanal) %> |
+<%= link_to 'Back', folha_semanals_path %>

@@ -1,0 +1,44 @@
+<h1>Alunos desmatriculados</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Matrícula</th>
+    <th>Nome</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+
+  <% @alunos_desmatriculados_dados_tratados.each do |usuarioDesmatriculados| %>
+    <tr>
+      <% usuarioAux = usuarioDesmatriculados.split("-") %>
+      <td><%= p usuarioAux[0] %></td>
+      <td><%= p usuarioAux[1] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h1>Alunos Matriculados</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Matrícula</th>
+    <th>Nome</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+
+  <% @alunos_matriculados_dados_tratados.each do |usuarioMatriculados| %>
+    <tr>
+      <% usuarioAux = usuarioMatriculados.split("-") %>
+      <td><%= p usuarioAux[0] %></td>
+      <td><%= p usuarioAux[1] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

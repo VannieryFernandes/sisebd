@@ -1,0 +1,47 @@
+<%= form_with(model: folha_semanal, local: true) do |form| %>
+  <% if folha_semanal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(folha_semanal.errors.count, "error") %> prohibited this folha_semanal from being saved:</h2>
+
+      <ul>
+      <% folha_semanal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :usuario_turma_id %>
+    <%= collection_select(:folha_semanal, :usuario_turma_id, @lista_usuario_turmas, :id, :nome) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :presente %>
+    <%= form.check_box :presente, id: :folha_semanal_presente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :trouxe_biblia %>
+    <%= form.check_box :trouxe_biblia, id: :folha_semanal_trouxe_biblia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :trouxe_licao %>
+    <%= form.check_box :trouxe_licao, id: :folha_semanal_trouxe_licao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :capitulos_lidos %>
+    <%= form.number_field :capitulos_lidos, id: :folha_semanal_capitulos_lidos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :oferta %>
+    <%= form.text_field :oferta, id: :folha_semanal_oferta %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

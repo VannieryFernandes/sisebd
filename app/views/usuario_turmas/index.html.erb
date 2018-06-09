@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Alunos matriculados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Turma</th>
+      <th>Aluno</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @usuario_turmas.each do |usuario_turma| %>
+      <tr>
+        <td><%= usuario_turma.turma %></td>
+        <td><%= usuario_turma.usuario %></td>
+        <td><%= link_to 'Show', usuario_turma %></td>
+        <td><%= link_to 'Edit', edit_usuario_turma_path(usuario_turma) %></td>
+        <td><%= link_to 'Destroy', usuario_turma, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Usuario Turma', new_usuario_turma_path %>

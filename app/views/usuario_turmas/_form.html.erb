@@ -1,0 +1,27 @@
+<%= form_with(model: usuario_turma, local: true) do |form| %>
+  <% if usuario_turma.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(usuario_turma.errors.count, "error") %> prohibited this usuario_turma from being saved:</h2>
+
+      <ul>
+      <% usuario_turma.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :turma_id %>
+    <%= collection_select(:usuario_turma, :turma_id, @lista_turmas, :id, :nome) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :usuario_id %>
+    <%= collection_select(:usuario_turma, :usuario_id, @lista_usuarios, :id, :nome) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

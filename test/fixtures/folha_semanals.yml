@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario_turma: one
+  presente: false
+  trouxe_biblia: false
+  trouxe_licao: false
+  capitulos_lidos: 1
+
+two:
+  usuario_turma: two
+  presente: false
+  trouxe_biblia: false
+  trouxe_licao: false
+  capitulos_lidos: 1

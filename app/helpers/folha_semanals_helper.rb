@@ -1,0 +1,2 @@
+module FolhaSemanalsHelper
+end

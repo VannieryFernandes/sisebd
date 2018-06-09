@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Turma:</strong>
+  <%= @usuario_turma.turma %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @usuario_turma.usuario %>
+</p>
+
+<%= link_to 'Edit', edit_usuario_turma_path(@usuario_turma) %> |
+<%= link_to 'Back', usuario_turmas_path %>
