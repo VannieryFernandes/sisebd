@@ -66,7 +66,7 @@ class FolhaSemanalsController < ApplicationController
 
   private
     def lista_usuario_turmas
-      @lista_usuario_turmas = Usuario.joins("join usuario_turmas on usuario_turmas.usuario_id = usuarios.id")
+      @lista_usuario_turmas = UsuarioTurma.select("usuarios.nome, usuario_turmas.id").joins("JOIN usuarios ON usuarios.id = usuario_turmas.usuario_id")
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_folha_semanal
