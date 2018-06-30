@@ -17,7 +17,7 @@
   <tbody>
     <% @folha_semanals.each do |folha_semanal| %>
       <tr>
-        <td><%= folha_semanal.usuario_turma %></td>
+        <td><%= folha_semanal.usuario_turma.usuario.nome %></td>
         <td><%= folha_semanal.presente %></td>
         <td><%= folha_semanal.trouxe_biblia %></td>
         <td><%= folha_semanal.trouxe_licao %></td>
