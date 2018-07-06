@@ -4,7 +4,7 @@ class FolhaSemanalsController < ApplicationController
   # GET /folha_semanals
   # GET /folha_semanals.json
   def index
-    @folha_semanals = FolhaSemanal.all
+    @folha_semanals = FolhaSemanal.where("created_at >= datetime('2018-07-06 00:00:00')")
     lista_usuario_turmas
   end
 
@@ -21,7 +21,7 @@ class FolhaSemanalsController < ApplicationController
 
   # GET /folha_semanals/1/edit
   def edit
-    lista_usuario_turmas
+    lista_usuario_turmas_todas
   end
 
   # POST /folha_semanals
@@ -31,11 +31,11 @@ class FolhaSemanalsController < ApplicationController
 
     respond_to do |format|
       if @folha_semanal.save
-        format.html { redirect_to @folha_semanal, notice: 'Folha semanal was successfully created.' }
-        format.json { render :show, status: :created, location: @folha_semanal }
+        format.html {redirect_to @folha_semanal, notice: 'Folha semanal was successfully created.'}
+        format.json {render :show, status: :created, location: @folha_semanal}
       else
-        format.html { render :new }
-        format.json { render json: @folha_semanal.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @folha_semanal.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -45,11 +45,11 @@ class FolhaSemanalsController < ApplicationController
   def update
     respond_to do |format|
       if @folha_semanal.update(folha_semanal_params)
-        format.html { redirect_to @folha_semanal, notice: 'Folha semanal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @folha_semanal }
+        format.html {redirect_to @folha_semanal, notice: 'Folha semanal was successfully updated.'}
+        format.json {render :show, status: :ok, location: @folha_semanal}
       else
-        format.html { render :edit }
-        format.json { render json: @folha_semanal.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @folha_semanal.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -59,22 +59,29 @@ class FolhaSemanalsController < ApplicationController
   def destroy
     @folha_semanal.destroy
     respond_to do |format|
-      format.html { redirect_to folha_semanals_url, notice: 'Folha semanal was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to folha_semanals_url, notice: 'Folha semanal was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
   private
-    def lista_usuario_turmas
-      @lista_usuario_turmas = UsuarioTurma.select("usuarios.nome, usuario_turmas.id").joins("JOIN usuarios ON usuarios.id = usuario_turmas.usuario_id")
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_folha_semanal
-      @folha_semanal = FolhaSemanal.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def folha_semanal_params
-      params.require(:folha_semanal).permit(:usuario_turma_id, :presente, :trouxe_biblia, :trouxe_licao, :capitulos_lidos, :oferta)
-    end
+  def lista_usuario_turmas
+    @usuarios_registrados_hoje = UsuarioTurma.select("*").joins("join folha_semanals on usuario_turmas.id = folha_semanals.usuario_turma_id").where("folha_semanals.created_at BETWEEN datetime('2018-07-06 00:00:00') AND datetime('2018-07-06 23:59:59')");
+    @lista_usuario_turmas = UsuarioTurma.select("usuarios.nome, usuario_turmas.id").joins("JOIN usuarios ON usuarios.id = usuario_turmas.usuario_id").where("usuario_turmas.id not in (#{@usuarios_registrados_hoje.ids.inspect.delete "]" "["})")
+  end
+
+  def lista_usuario_turmas_todas
+    @lista_usuario_turmas = UsuarioTurma.select("usuarios.nome, usuario_turmas.id").joins("JOIN usuarios ON usuarios.id = usuario_turmas.usuario_id")
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_folha_semanal
+    @folha_semanal = FolhaSemanal.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def folha_semanal_params
+    params.require(:folha_semanal).permit(:usuario_turma_id, :presente, :trouxe_biblia, :trouxe_licao, :capitulos_lidos, :oferta)
+  end
 end
