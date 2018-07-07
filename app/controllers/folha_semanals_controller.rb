@@ -1,11 +1,12 @@
 class FolhaSemanalsController < ApplicationController
   before_action :set_folha_semanal, only: [:show, :edit, :update, :destroy]
+  before_action :lista_usuario_turmas, only: [:index, :new]
+  before_action :lista_usuario_turmas_todas, only: [:edit]
 
   # GET /folha_semanals
   # GET /folha_semanals.json
   def index
-    @folha_semanals = FolhaSemanal.where("created_at >= datetime('2018-07-06 00:00:00')")
-    lista_usuario_turmas
+    @folha_semanals = FolhaSemanal.where("created_at >= datetime('2018-07-06 00:00:00 -03:00')")
   end
 
   # GET /folha_semanals/1
@@ -16,12 +17,10 @@ class FolhaSemanalsController < ApplicationController
   # GET /folha_semanals/new
   def new
     @folha_semanal = FolhaSemanal.new
-    lista_usuario_turmas
   end
 
   # GET /folha_semanals/1/edit
   def edit
-    lista_usuario_turmas_todas
   end
 
   # POST /folha_semanals
@@ -67,7 +66,7 @@ class FolhaSemanalsController < ApplicationController
   private
 
   def lista_usuario_turmas
-    @usuarios_registrados_hoje = UsuarioTurma.select("*").joins("join folha_semanals on usuario_turmas.id = folha_semanals.usuario_turma_id").where("folha_semanals.created_at BETWEEN datetime('2018-07-06 00:00:00') AND datetime('2018-07-06 23:59:59')");
+    @usuarios_registrados_hoje = UsuarioTurma.select("*").joins("join folha_semanals on usuario_turmas.id = folha_semanals.usuario_turma_id").where("folha_semanals.created_at BETWEEN datetime('2018-07-06 00:00:00 -03:00') and datetime('2018-07-06 23:59:59 -03:00')");
     @lista_usuario_turmas = UsuarioTurma.select("usuarios.nome, usuario_turmas.id").joins("JOIN usuarios ON usuarios.id = usuario_turmas.usuario_id").where("usuario_turmas.id not in (#{@usuarios_registrados_hoje.ids.inspect.delete "]" "["})")
   end
 
