@@ -14,8 +14,8 @@
   <tbody>
     <% @usuario_turmas.each do |usuario_turma| %>
       <tr>
-        <td><%= usuario_turma.turma %></td>
-        <td><%= usuario_turma.usuario %></td>
+        <td><%= usuario_turma.turma.nome %></td>
+        <td><%= usuario_turma.usuario.nome %></td>
         <td><%= link_to 'Show', usuario_turma %></td>
         <td><%= link_to 'Edit', edit_usuario_turma_path(usuario_turma) %></td>
         <td><%= link_to 'Destroy', usuario_turma, method: :delete, data: { confirm: 'Are you sure?' } %></td>
