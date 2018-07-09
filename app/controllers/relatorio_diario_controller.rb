@@ -1,6 +1,7 @@
 class RelatorioDiarioController < ApplicationController
   def index
     self.relatorio_diario
+    self.aniversariantes_da_semana
   end
 
   def relatorio_diario
@@ -93,5 +94,9 @@ class RelatorioDiarioController < ApplicationController
     end
     @relatorio_diario_dados_tratados.push(vetorAux[:auxNomeTurma] + "-" + vetorAux[:auxCapLidos].to_s + "-" + vetorAux[:auxPresente].to_s + "-" + vetorAux[:auxAuxente].to_s + "-" + vetorAux[:auxTrouxeBiblia].to_s + "-" + vetorAux[:auxNaoTrouxeBiblia].to_s + "-" + vetorAux[:auxTrouxeLicao].to_s + "-" + vetorAux[:auxNaoTrouxeLicao].to_s + "-" + vetorAux[:auxOferta].to_s + "-" + vetorAux[:auxVisitante].to_s)
     @relatorio_diario_dados_tratados.push(vetorAuxTotal[:auxNomeTurma] + "-" + vetorAuxTotal[:auxCapLidos].to_s + "-" + vetorAuxTotal[:auxPresente].to_s + "-" + vetorAuxTotal[:auxAuxente].to_s + "-" + vetorAuxTotal[:auxTrouxeBiblia].to_s + "-" + vetorAuxTotal[:auxNaoTrouxeBiblia].to_s + "-" + vetorAuxTotal[:auxTrouxeLicao].to_s + "-" + vetorAuxTotal[:auxNaoTrouxeLicao].to_s + "-" + vetorAuxTotal[:auxOferta].to_s + "-" + vetorAuxTotal[:auxVisitante].to_s)
+  end
+
+  def aniversariantes_da_semana
+    @aniversariantes_da_semana = Usuario.where("strftime('%m-%d', data_nascimento) BETWEEN '02-06' and '06-30'")
   end
 end

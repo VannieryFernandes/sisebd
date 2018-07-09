@@ -34,3 +34,25 @@
   <% end %>
   </tbody>
 </table>
+
+<h1>Aniversariantes da Semana</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>Data de aniversário</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+
+  <% @aniversariantes_da_semana.each do |aniver| %>
+    <tr>
+      <td><%= aniver.nome %></td>
+      <td><%= aniver.data_nascimento.strftime('%d/%m') %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
