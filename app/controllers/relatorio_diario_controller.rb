@@ -1,3 +1,5 @@
+require 'date'
+
 class RelatorioDiarioController < ApplicationController
   def index
     self.relatorio_diario
@@ -6,7 +8,7 @@ class RelatorioDiarioController < ApplicationController
 
   def relatorio_diario
 #    relatorio_diario_dados_brutos = UsuarioTurma.select("*").joins(:turma, :folha_semanal).where("folha_semanals.created_at BETWEEN datetime('2018-04-08 00:00:00') AND datetime('2018-04-09 23:59:59')")
-    relatorio_diario_dados_brutos = UsuarioTurma.select("turmas.id, turmas.nome, folha_semanals.presente, folha_semanals.capitulos_lidos, folha_semanals.trouxe_licao, folha_semanals.trouxe_biblia, folha_semanals.oferta, usuarios.visitante").joins("JOIN folha_semanals ON folha_semanals.usuario_turma_id = usuario_turmas.id JOIN turmas ON turmas.id = usuario_turmas.turma_id JOIN usuarios ON usuarios.id = usuario_turmas.usuario_id").where("folha_semanals.created_at BETWEEN datetime('2018-05-26 00:00:00') AND datetime('2018-06-17 23:59:59')").order("turmas.id")
+    relatorio_diario_dados_brutos = UsuarioTurma.select("turmas.id, turmas.nome, folha_semanals.presente, folha_semanals.capitulos_lidos, folha_semanals.trouxe_licao, folha_semanals.trouxe_biblia, folha_semanals.oferta, usuarios.visitante").joins("JOIN folha_semanals ON folha_semanals.usuario_turma_id = usuario_turmas.id JOIN turmas ON turmas.id = usuario_turmas.turma_id JOIN usuarios ON usuarios.id = usuario_turmas.usuario_id").where("folha_semanals.created_at BETWEEN datetime('#{Time.now.strftime('%Y-%m-%d 00:00:00')}') AND datetime('#{Time.now.strftime('%Y-%m-%d 23:59:59')}')").order("turmas.id")
     @relatorio_diario_dados_tratados = Array.new
 
     auxVar = 0
@@ -97,6 +99,6 @@ class RelatorioDiarioController < ApplicationController
   end
 
   def aniversariantes_da_semana
-    @aniversariantes_da_semana = Usuario.where("strftime('%m-%d', data_nascimento) BETWEEN '02-06' and '06-30'")
+    @aniversariantes_da_semana = Usuario.where("strftime('%m-%d', data_nascimento) BETWEEN ('#{(Time.now - 6.days).strftime('%m-%d')}') and ('#{(Time.now).strftime('%m-%d')}')")
   end
 end

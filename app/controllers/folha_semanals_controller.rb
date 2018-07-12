@@ -6,7 +6,7 @@ class FolhaSemanalsController < ApplicationController
   # GET /folha_semanals
   # GET /folha_semanals.json
   def index
-    @folha_semanals = FolhaSemanal.where("created_at >= datetime('2018-07-06 00:00:00 -03:00')")
+    @folha_semanals = FolhaSemanal.where("created_at >= datetime('#{Time.now.strftime('%Y-%m-%d %H:%M:%S')}')")
   end
 
   # GET /folha_semanals/1
@@ -66,7 +66,7 @@ class FolhaSemanalsController < ApplicationController
   private
 
   def lista_usuario_turmas
-    @usuarios_registrados_hoje = UsuarioTurma.select("*").joins("join folha_semanals on usuario_turmas.id = folha_semanals.usuario_turma_id").where("folha_semanals.created_at BETWEEN datetime('2018-07-06 00:00:00 -03:00') and datetime('2018-07-06 23:59:59 -03:00')");
+    @usuarios_registrados_hoje = UsuarioTurma.select("*").joins("join folha_semanals on usuario_turmas.id = folha_semanals.usuario_turma_id").where("folha_semanals.created_at BETWEEN datetime('#{Time.now.strftime('%Y-%m-%d 00:00:00')}') and datetime('#{Time.now.strftime('%Y-%m-%d 23:59:59')}')");
     @lista_usuario_turmas = UsuarioTurma.select("usuarios.nome, usuario_turmas.id").joins("JOIN usuarios ON usuarios.id = usuario_turmas.usuario_id").where("usuario_turmas.id not in (#{@usuarios_registrados_hoje.ids.inspect.delete "]" "["})")
   end
 
