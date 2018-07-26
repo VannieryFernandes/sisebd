@@ -1,4 +1,6 @@
-<h1>Alunos desmatriculados</h1>
+<p id="notice"><%= notice %></p>
+
+<h1>Alunos a desmatricular</h1>
 
 <table>
   <thead>
@@ -16,12 +18,13 @@
       <% usuarioAux = usuarioDesmatriculados.split("-") %>
       <td><%= p usuarioAux[0] %></td>
       <td><%= p usuarioAux[1] %></td>
+      <td><%= link_to "desmatricular", '/situacao_alunos/desmatricular/'+usuarioAux[2] %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
 
-<h1>Alunos Matriculados</h1>
+<h1>Alunos a matricular</h1>
 <table>
   <thead>
   <tr>
@@ -38,6 +41,7 @@
       <% usuarioAux = usuarioMatriculados.split("-") %>
       <td><%= p usuarioAux[0] %></td>
       <td><%= p usuarioAux[1] %></td>
+      <td><%= link_to "matricular", '/situacao_alunos/matricular/'+usuarioAux[2] %></td>
     </tr>
   <% end %>
   </tbody>

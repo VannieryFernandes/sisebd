@@ -6,7 +6,7 @@ class FolhaSemanalsController < ApplicationController
   # GET /folha_semanals
   # GET /folha_semanals.json
   def index
-    @folha_semanals = FolhaSemanal.where("created_at >= datetime('#{Time.now.strftime('%Y-%m-%d %H:%M:%S')}')")
+    @folha_semanals = FolhaSemanal.where("created_at >= datetime('#{Time.now.strftime('%Y-%m-%d 00:00:00')}')")
   end
 
   # GET /folha_semanals/1

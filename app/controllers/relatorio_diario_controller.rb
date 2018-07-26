@@ -61,10 +61,10 @@ class RelatorioDiarioController < ApplicationController
         vetorAuxTotal[:auxOferta] += infoTurma.oferta.to_f
 
         #Presentes e auxentes
-        if infoTurma.presente == 't'
+        if infoTurma.presente == 't' and infoTurma.visitante == 'f'
           vetorAux[:auxPresente] += 1
           vetorAuxTotal[:auxPresente] += 1
-        else
+        elsif infoTurma.presente == 'f' and infoTurma.visitante == 'f'
           vetorAux[:auxAuxente] += 1
           vetorAuxTotal[:auxAuxente] += 1
         end
@@ -79,16 +79,16 @@ class RelatorioDiarioController < ApplicationController
         end
 
         #Trouxe e não trouxe lição
-        if infoTurma.trouxe_licao == 't'
+        if infoTurma.trouxe_licao == 't' and infoTurma.visitante == 'f'
           vetorAux[:auxTrouxeLicao] += 1
           vetorAuxTotal[:auxTrouxeLicao] += 1
-        else
+        elsif infoTurma.trouxe_licao == 'f' and infoTurma.visitante == 'f'
           vetorAux[:auxNaoTrouxeLicao] += 1
           vetorAuxTotal[:auxNaoTrouxeLicao] += 1
         end
 
         #Visitante
-        if infoTurma.visitante == 't'
+        if infoTurma.visitante == 't' and infoTurma.presente == 't'
           vetorAux[:auxVisitante] += 1
           vetorAuxTotal[:auxVisitante] += 1
         end

@@ -12,5 +12,8 @@ Rails.application.routes.draw do
   resources :turmas
   resources :usuarios
   resources :perfils
+
+  get 'situacao_alunos/desmatricular(/:id)', to: 'situacao_alunos#desmatricular'
+  get 'situacao_alunos/matricular(/:id)', to: 'situacao_alunos#matricular'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

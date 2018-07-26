@@ -4,6 +4,7 @@
   <thead>
   <tr>
     <th>Turma</th>
+    <th>Matriculados</th>
     <th>Auxentes</th>
     <th>Presentes</th>
     <th>Visitantes</th>
@@ -12,7 +13,7 @@
     <th>Trouxe bíblia</th>
     <th>Trouxe lição</th>
     <th>Oferta</th>
-    <th colspan="3"></th>
+    <th colspan="10"></th>
   </tr>
   </thead>
 
@@ -22,6 +23,7 @@
     <tr>
       <% turmaAux = dadosTurma.split("-") %>
       <td><%= turmaAux[0] %></td>
+      <td><%= turmaAux[2].to_i + turmaAux[3].to_i %></td>
       <td><%= turmaAux[3] %></td>
       <td><%= turmaAux[2] %></td>
       <td><%= turmaAux[9] %></td>
