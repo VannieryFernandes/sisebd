@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Alunos matriculados</h1>
+<center><h2>Alunos matriculados</h2></center>
 
-<table>
-  <thead>
+<table class="table">
+  <thead class="thead-light">
     <tr>
-      <th>Turma</th>
-      <th>Aluno</th>
+      <th scope="col">Turma</th>
+      <th scope="col">Aluno</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Usuario Turma', new_usuario_turma_path %>
+<%= link_to 'Novo aluno da turma', new_usuario_turma_path,:class=>'btn btn-primary btn-custom' %>

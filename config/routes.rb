@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get 'home/sobre'
+
   resources :folha_semanals
   resources :usuario_turmas
   resources :turmas

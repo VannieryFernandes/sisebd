@@ -1,15 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Relação do redimento dos alunos</h1>
-
-<table>
-  <thead>
+<center><h1>Relação do rendimento dos alunos</h1></center>
+<br>
+<div class="table-responsive">
+<table class="table">
+  <thead class="thead-light">
     <tr>
-      <th>Usuário</th>
-      <th>Presente</th>
-      <th>Trouxe Bíblia</th>
-      <th>Trouxe lição</th>
-      <th>Capítulos lidos</th>
+      <th scope="col">Usuário</th>
+      <th scope="col">Presente</th>
+      <th scope="col">Trouxe Bíblia</th>
+      <th scope="col">Trouxe lição</th>
+      <th scope="col">Capítulos lidos</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -29,7 +30,8 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
-<%= link_to 'New Folha Semanal', new_folha_semanal_path %>
+<%= link_to 'Nova Folha Semanal', new_folha_semanal_path,:class=>'btn btn-primary btn-custom' %>
