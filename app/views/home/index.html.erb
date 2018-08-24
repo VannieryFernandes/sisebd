@@ -1,12 +1,18 @@
-<h1>Sistema Escola Bíblica Dominical</h1>
-<h2>Escolha o que quer fazer</h2>
 
-<ul>
-  <li><%= link_to "Registrar rendimento dominical do aluno", folha_semanals_path %></li>
-  <li><%= link_to "Alunos matriculados e desmatriculados", situacao_alunos_index_path %></li>
-  <li><%= link_to "Cadastrar um aluno", usuarios_path %></li>
-  <li><%= link_to "Matricular um aluno em uma turma", usuario_turmas_path %></li>
-  <li><%= link_to "Cadastrar uma nova turma na EBD", turmas_path %></li>
-  <li><%= link_to "Cadastrar um perfil na EBD", perfils_path %></li>
-  <li><%= link_to "Relatório diário", relatorio_diario_index_path %></li>
-</ul>
+
+<h1>Escola Bíblica Dominical do José Américo</h1>
+<br>
+
+<div class="list-group">
+
+
+ <%= link_to "Registro de rendimentos do aluno", folha_semanals_path, :class=>"list-group-item list-group-item-action" %>
+  <%= link_to "Situação dos alunos", situacao_alunos_index_path, :class=>"list-group-item list-group-item-action" %>
+  <%= link_to "Controle dos alunos", usuarios_path, :class=>"list-group-item list-group-item-action" %>
+  <%= link_to "Matricular um aluno em uma turma", usuario_turmas_path, :class=>"list-group-item list-group-item-action" %>
+  <%= link_to "Controle de turmas", turmas_path, :class=>"list-group-item list-group-item-action" %>
+  <%= link_to "Gerenciar perfis", perfils_path, :class=>"list-group-item list-group-item-action" %>
+  <%= link_to "Relatório diário", relatorio_diario_index_path, :class=>"list-group-item list-group-item-action" %>
+
+
+</div>
